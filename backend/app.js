@@ -7,6 +7,9 @@ const app = express();
 import cors from 'cors';
 import authRouter from "./Views/msAuth.js";
 
+import portfolioDownloadRoute from './Routes/portfolioDownloadRoute.js';
+
+
 const corsOptions = {
     origin : `${process.env.FRONTENDURL}`,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
@@ -18,6 +21,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(authRouter);
+app.use('/api', portfolioDownloadRoute);
 
 
 app.listen(process.env.PORT || 5001, (req,res,err) => {
