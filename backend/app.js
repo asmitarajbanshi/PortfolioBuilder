@@ -8,6 +8,12 @@ import cors from 'cors';
 import authRouter from './Views/msAuth.js';
 import portfolioDownloadRoute from './Routes/portfolioDownloadRoute.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const corsOptions = {
     origin: `${process.env.FRONTENDURL}`,
@@ -17,7 +23,7 @@ const corsOptions = {
 };
 
 // Middleware setup
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // API routes
